@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://l80y3sm3obr2"]
+
+[ext_resource type="PackedScene" uid="uid://pq4p6ap081eu" path="res://player.tscn" id="1_8uh7m"]
+[ext_resource type="Texture2D" uid="uid://cgw6vdeple41r" path="res://eetemp.png" id="2_8uh7m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3x75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8uh7m")
+}],
+"loop": 1,
+"name": &"iddle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3x75"]
+size = Vector2(245.5, 354)
+
+[node name="test" type="Node2D" unique_id=7700373]
+
+[node name="CharacterBody2D" parent="." unique_id=20168186 instance=ExtResource("1_8uh7m")]
+position = Vector2(87, 142)
+spezuli = 200.0
+jumpzuli = 400.0
+
+[node name="ground" type="StaticBody2D" parent="." unique_id=738640140]
+metadata/_edit_group_ = true
+
+[node name="aniamtedsprite" type="AnimatedSprite2D" parent="ground" unique_id=1717724414]
+position = Vector2(121.312515, 335.16895)
+scale = Vector2(0.31171873, 0.31171873)
+sprite_frames = SubResource("SpriteFrames_n3x75")
+animation = &"iddle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1229295509]
+position = Vector2(122.25, 334)
+shape = SubResource("RectangleShape2D_n3x75")
