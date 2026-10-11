@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://l80y3sm3obr2"]
 
 [ext_resource type="PackedScene" uid="uid://pq4p6ap081eu" path="res://player.tscn" id="1_8uh7m"]
-[ext_resource type="Texture2D" uid="uid://cgw6vdeple41r" path="res://eetemp.png" id="2_8uh7m"]
+[ext_resource type="Texture2D" uid="uid://bn2bp4mlkrobp" path="res://ha.png" id="2_8uh7m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n3x75"]
 animations = [{
@@ -21,7 +21,7 @@ size = Vector2(245.5, 354)
 
 [node name="CharacterBody2D" parent="." unique_id=20168186 instance=ExtResource("1_8uh7m")]
 position = Vector2(87, 142)
-spezuli = 200.0
+spezuli = 50.0
 jumpzuli = 400.0
 
 [node name="ground" type="StaticBody2D" parent="." unique_id=738640140]
