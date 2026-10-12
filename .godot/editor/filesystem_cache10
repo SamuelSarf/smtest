@@ -1,12 +1,12 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1791728561
+::res://::1791751449
 250122.png::CompressedTexture2D::9034759991019947152::1789859905::1791486529::1::::<><><>0<>0<>b2424e77c82a4542c144c3fc73316152<>res://.godot/imported/250122.png-46f02aa659d67ba93fa55c2fbb08cc04.ctex::
 doors.png::CompressedTexture2D::6402968133589629144::1789859905::1791486529::1::::<><><>0<>0<>c33b7248b73e5c9afbe78e6aab15cc35<>res://.godot/imported/doors.png-cfabf047b0005f9e50c219d995aa004b.ctex::
 eetemp.png::CompressedTexture2D::5241310632697165481::1789859905::1791486529::1::::<><><>0<>0<>734207bdf3605ad330fbaf12a8edde2d<>res://.godot/imported/eetemp.png-406763cccf6bd1bf36761b21706bf4d5.ctex::
 ha.png::CompressedTexture2D::3354702896477120497::1789859905::1791486529::1::::<><><>0<>0<>43be1eff2cdfab72dbdf815e3ac4582a<>res://.godot/imported/ha.png-6ad1ab311cb711cf7d556cd4c11e6e44.ctex::
 icon.svg::CompressedTexture2D::4615079487816936504::1789859905::1791486529::1::::<><><>0<>0<>5bc2bb428b64bceef6cd0affb7e6fefc<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 nivel.tscn::PackedScene::1784733883419502590::1789859905::0::1::::<><><>0<>0<><>::uid://d1yrgaxb3oc8w::::res://250122.png<>uid://pq4p6ap081eu::::res://player.tscn
-player.gd::GDScript::496401775034085900::1791674756::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.gd::GDScript::496401775034085900::1791739431::0::1::::<>CharacterBody2D<><>0<>0<><>::
 player.tscn::PackedScene::1087651907274364540::1791671496::0::1::::<><><>0<>0<><>::uid://cgw6vdeple41r::::res://eetemp.png<>uid://hcpwun0myipo::::res://player.gd
 samus.png::CompressedTexture2D::9216374201845505912::1791670953::1791670954::1::::<><><>0<>0<>0ff89537b2640e9c7adc4a9289cb67d0<>res://.godot/imported/samus.png-56b6d971d632a69c0b8cb61fa0a76892.ctex::
-test.tscn::PackedScene::841764028818685969::1791674906::0::1::::<><><>0<>0<><>::uid://pq4p6ap081eu::::res://player.tscn<>uid://bn2bp4mlkrobp::::res://ha.png
+test.tscn::PackedScene::841764028818685969::1791739519::0::1::::<><><>0<>0<><>::uid://pq4p6ap081eu::::res://player.tscn<>uid://bn2bp4mlkrobp::::res://ha.png
