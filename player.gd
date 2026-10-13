@@ -3,13 +3,17 @@ extends CharacterBody2D
 @export var spezuli: float = 50;
 @export var jumpzuli: float = 50;
 var isfacingright: bool = false;
-@onready var animated_spirte = $"../ground/aniamtedsprite";
+@onready var animated_spirte = $AnimatedSprite2D;
 var facing = 0
 var momentumstate = 0 #0: standing; 1: moving: 2: slowing down; 3: finished slowing down; 4: turning around; 5: jumping; 6:landing
 var turningphase = 0
 var turntarget = 0
 var jumping = false
 @export var gravity:float = 500
+
+func _ready() -> void:
+	floor_max_angle = deg_to_rad(60.0)
+	floor_snap_length = 8.0
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -30,7 +34,7 @@ func updateanim():
 	if velocity.x:
 		animated_spirte.play("iddle")
 		
-func jump(delta):
+func jump(_delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		momentumstate = 5
 		$hitbox.shape.set_size(Vector2(20, 15))
@@ -62,6 +66,8 @@ func movexground():
 	#print(facing)
 	#print(turntarget)
 	var input_axis = Input.get_axis("move_left", "move_right");
+	if Input.is_action_pressed("crouch"):
+		input_axis = 0
 	var running = Input.is_action_pressed("run")
 	if momentumstate == 0 and input_axis != 0:
 		if facing == input_axis:

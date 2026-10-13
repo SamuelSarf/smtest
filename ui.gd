@@ -5,7 +5,7 @@ var last_energy = 0
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Global.energy != last_energy:
 		last_energy = Global.energy
 		act_energy()
@@ -24,4 +24,4 @@ func act_energy():
 	else:
 		$"tanques/1".frame = 1
 	$"en 10^0".frame = last_energy % 10
-	$"en 10^1".frame = floor((last_energy % 100)/10)
+	$"en 10^1".frame = (last_energy % 100)/10

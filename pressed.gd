@@ -1,6 +1,6 @@
 extends Control
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("move_left"):
 		$left.visible = true
 	else:
@@ -21,3 +21,7 @@ func _process(delta: float) -> void:
 		$x.visible = true
 	else:
 		$x.visible = false
+	if Input.is_action_pressed("crouch"):
+		$down.visible = true
+	else:
+		$down.visible = false

@@ -1,8 +1,2 @@
+res://underground.tscn
 res://nivel.tscn
-res://camera_2d.gd
-res://ui.tscn
-res://global.gd
-res://ui.gd
-res://player.gd
-res://surface.gd
-res://pressed.gd
