@@ -1,2 +1,7 @@
-Camera2D
 AnimatedSprite2D
+Control
+Sprite2D
+ColorRect
+CanvasLayer
+Container
+Camera2D

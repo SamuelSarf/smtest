@@ -10,6 +10,7 @@ var turningphase = 0
 var turntarget = 0
 var jumping = false
 @export var gravity:float = 500
+
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if momentumstate == 5:

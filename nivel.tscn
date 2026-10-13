@@ -1,7 +1,10 @@
 [gd_scene format=4 uid="uid://0oskoddebeag"]
 
 [ext_resource type="Texture2D" uid="uid://d1yrgaxb3oc8w" path="res://250122.png" id="1_wrbek"]
+[ext_resource type="Script" uid="uid://b72t6t2sbsqx4" path="res://surface.gd" id="1_ymy7k"]
 [ext_resource type="PackedScene" uid="uid://pq4p6ap081eu" path="res://player.tscn" id="2_h06de"]
+[ext_resource type="Script" uid="uid://bka6121jo7ccf" path="res://camera_2d.gd" id="3_7gdj4"]
+[ext_resource type="PackedScene" uid="uid://c317xjmfsrem3" path="res://ui.tscn" id="4_j87l1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h06de"]
 texture = ExtResource("1_wrbek")
@@ -659,6 +662,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_h06de")
 
 [node name="nivel" type="Node2D" unique_id=1222861597]
+script = ExtResource("1_ymy7k")
 
 [node name="Tielmap Layer" type="Node2D" parent="." unique_id=1753007023]
 
@@ -673,4 +677,8 @@ position = Vector2(111, 104)
 gravity = 50.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2143198037]
-offset = Vector2(120, 120)
+offset = Vector2(0, -32)
+limit_left = -1000
+script = ExtResource("3_7gdj4")
+
+[node name="CanvasLayer" parent="." unique_id=1159567304 instance=ExtResource("4_j87l1")]
