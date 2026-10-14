@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://cjxopgfak5uvh"
+Transition="*uid://g3jua03v445e"
 
 [display]
 
@@ -26,6 +27,10 @@ window/size/viewport_height=256
 window/size/window_width_override=920
 window/size/window_height_override=920
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/saltmire_transitions/plugin.cfg")
 
 [input]
 

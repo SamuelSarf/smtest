@@ -1,10 +1,22 @@
 extends Node2D
 var icecounter = 0
+@onready var attributes: TileMapLayer = $TilemapL/attributes
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
+func _physics_process(delta):
+	var tile_coord = attributes.local_to_map(attributes.to_local($CharacterBody2D.global_position))
+	var tile_data = attributes.get_cell_tile_data(tile_coord)
+	if not tile_data:
+		$CharacterBody2D.onsnow = false
+		return
+	if tile_data.get_custom_data("transition"):
+		Transition.to("res://underground.tscn", "wipe_up")
+	if tile_data.get_custom_data("snow"):
+		$CharacterBody2D.onsnow = true
+	else:
+		$CharacterBody2D.onsnow = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
