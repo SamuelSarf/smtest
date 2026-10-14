@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dk1wd6h36pjwg"]
+
+[ext_resource type="Script" uid="uid://b3jyhaqof6xqs" path="res://powerpopup.gd" id="1_e8eov"]
+[ext_resource type="Texture2D" uid="uid://ci3nmmugfna4f" path="res://ice text.png" id="2_5l701"]
+[ext_resource type="Shader" uid="uid://ce0hwqnyddios" path="res://powerpopup.gdshader" id="3_5l701"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvpec"]
+shader = ExtResource("3_5l701")
+shader_parameter/split = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n3x75"]
+viewport_path = NodePath("SubViewport")
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=659102850]
+process_mode = 3
+script = ExtResource("1_e8eov")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2101046294]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=1045973482]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -12.0
+offset_right = 72.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport" unique_id=957326066]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -3.0
+offset_right = 30.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5l701")
+
+[node name="RevealRect" type="TextureRect" parent="." unique_id=376044695]
+material = SubResource("ShaderMaterial_jvpec")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_n3x75")
+expand_mode = 1

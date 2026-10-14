@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://oxqipjdkffu8"]
+
+[ext_resource type="Script" uid="uid://bwfj3jpruxhvb" path="res://suiteffect.gd" id="1_6e6pi"]
+[ext_resource type="Shader" uid="uid://dd8xfvyqot0yp" path="res://suit.gdshader" id="1_lfvwi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3x75"]
+shader = ExtResource("1_lfvwi")
+shader_parameter/screen_size = Vector2(1920, 1080)
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/pixel_size = 8.0
+shader_parameter/phase_meet = 0.0
+shader_parameter/phase_widen = 0.0
+shader_parameter/phase_morph = 0.0
+shader_parameter/phase_expand = 0.0
+shader_parameter/phase_brighten = 0.0
+shader_parameter/phase_collapse_v = 0.0
+shader_parameter/phase_collapse_h = 0.0
+shader_parameter/base_color = Color(0.3, 0.5, 0.9, 0.6)
+shader_parameter/bright_color = Color(1, 1, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=117385326]
+
+[node name="Control" type="Control" parent="." unique_id=686450538]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6e6pi")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1020148927]
+material = SubResource("ShaderMaterial_n3x75")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

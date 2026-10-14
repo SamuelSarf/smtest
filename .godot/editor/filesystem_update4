@@ -1,8 +1,7 @@
+res://suiteffect.tscn
+res://powerpopup.gdshader
+res://suit.gdshader
+res://suiteffect.gd
+res://powerup.gd
 res://underground.tscn
-res://nivel.tscn
-res://player.gd
 res://player.tscn
-res://surface.gd
-res://snow.gd
-res://autoplay.gd
-res://camera_2d.gd

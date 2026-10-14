@@ -18,7 +18,8 @@ var onsnow = false
 func _ready() -> void:
 	floor_max_angle = deg_to_rad(60.0)
 	floor_snap_length = 8.0
-	
+	velocity = SceneTransition.velocity
+	position = SceneTransition.position
 
 func _physics_process(delta: float) -> void:
 	if onsnow:

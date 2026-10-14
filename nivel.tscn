@@ -16,6 +16,8 @@ margins = Vector2i(1, 1)
 separation = Vector2i(1, 1)
 0:0/0 = 0
 0:0/0/custom_data_0 = "underground"
+0:0/0/custom_data_2 = Vector2(51, 16)
+0:0/0/custom_data_3 = Vector2(3, -1)
 1:0/animation_frame_0/duration = 0.3
 1:0/animation_frame_1/duration = 0.3
 1:0/animation_frame_2/duration = 0.3
@@ -36,6 +38,10 @@ custom_data_layer_0/name = "transition"
 custom_data_layer_0/type = 4
 custom_data_layer_1/name = "snow"
 custom_data_layer_1/type = 1
+custom_data_layer_2/name = "anchor"
+custom_data_layer_2/type = 5
+custom_data_layer_3/name = "targetanch"
+custom_data_layer_3/type = 5
 sources/0 = SubResource("TileSetAtlasSource_d04yg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vttml"]

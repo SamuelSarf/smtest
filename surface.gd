@@ -12,8 +12,11 @@ func _physics_process(delta):
 		$CharacterBody2D.onsnow = false
 		return
 	if tile_data.get_custom_data("transition"):
-		Transition.to("res://underground.tscn", "wipe_up")
-	if tile_data.get_custom_data("snow"):
+		SceneTransition.velocity = $CharacterBody2D.velocity
+		SceneTransition.position = $CharacterBody2D.position + 16*(tile_data.get_custom_data("targetanch")-tile_data.get_custom_data("anchor"))
+		Transition.to("res://"+tile_data.get_custom_data("transition")+".tscn", "wipe_up")
+		return
+	if tile_data.get_custom_data("snow") and Global.glace == false:
 		$CharacterBody2D.onsnow = true
 	else:
 		$CharacterBody2D.onsnow = false
@@ -21,8 +24,11 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Global.glace == false:
-		if icecounter > 3:
-			icecounter = 0
+		if icecounter > 4:
+			if $CharacterBody2D.onsnow == false:
+				icecounter = 0
+			else:
+				icecounter = 2
 			Global.energy -= 1
 		else:
 			icecounter += 1
