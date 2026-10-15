@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://b1d67n50sphwn" path="res://autoplay.gd" id="9_6xgwd"]
 [ext_resource type="Texture2D" uid="uid://bsvntdinf4lh2" path="res://ice rock.png" id="11_xdn7w"]
 [ext_resource type="Script" uid="uid://c8vq686junm77" path="res://powerup.gd" id="12_h7tmf"]
+[ext_resource type="AudioStream" uid="uid://bujvwycvjwfum" path="res://95 Item Room.mp3" id="13_us87v"]
+[ext_resource type="AudioStream" uid="uid://83wwswxyavqt" path="res://blip.mp3" id="14_0boax"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d04yg"]
 texture = ExtResource("6_qbb5w")
@@ -882,9 +884,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAAAAAsAAAABAAA
 tile_set = SubResource("TileSet_jvpec")
 
 [node name="snow" type="Parallax2D" parent="." unique_id=528061374]
-repeat_size = Vector2(256, 256)
+repeat_size = Vector2(0, 256)
 autoscroll = Vector2(0, 120)
-limit_end = Vector2(256, 10000000)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="snow" unique_id=1910934288]
 texture_repeat = 2
@@ -904,3 +905,10 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rock/Area2D" unique_id=1162415223]
 shape = SubResource("RectangleShape2D_ywdb4")
+
+[node name="music" type="AudioStreamPlayer2D" parent="." unique_id=1475514591]
+stream = ExtResource("13_us87v")
+autoplay = true
+
+[node name="snowblips" type="AudioStreamPlayer2D" parent="." unique_id=1088206114]
+stream = ExtResource("14_0boax")

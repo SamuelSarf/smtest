@@ -1,7 +1,12 @@
-res://suiteffect.tscn
+res://powerpopup.tscn
 res://powerpopup.gdshader
 res://suit.gdshader
+res://powerpopup.gd
+res://suiteffect.tscn
 res://suiteffect.gd
-res://powerup.gd
 res://underground.tscn
+res://nivel.tscn
+res://surface.gd
 res://player.tscn
+res://player.gd
+res://hurtbox.gd

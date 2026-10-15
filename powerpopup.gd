@@ -8,8 +8,9 @@ func _ready() -> void:
 
 func play_whole():
 	get_tree().paused = true
+	$AudioStreamPlayer2D.play()
 	await play(false,0.5)
-	await get_tree().create_timer(2.0).timeout 
+	await $AudioStreamPlayer2D.finished
 	await play(true,0.2)
 	queue_free()
 

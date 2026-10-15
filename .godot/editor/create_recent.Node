@@ -1,6 +1,7 @@
+AnimatedSprite2D
 CollisionShape2D
 Area2D
-AnimatedSprite2D
+AudioStreamPlayer2D
 CanvasLayer
 ColorRect
 TextureRect
@@ -11,4 +12,3 @@ Parallax2D
 TileMapLayer
 TileMap
 Node2D
-Container

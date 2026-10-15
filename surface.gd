@@ -24,11 +24,15 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Global.glace == false:
-		if icecounter > 4:
+		if icecounter > 6:
+			if $snowblips.playing == false:
+				$snowblips.play()
 			if $CharacterBody2D.onsnow == false:
+				$snowblips.volume_db = -10
 				icecounter = 0
 			else:
-				icecounter = 2
+				$snowblips.volume_db = -5
+				icecounter = 4
 			Global.energy -= 1
 		else:
 			icecounter += 1

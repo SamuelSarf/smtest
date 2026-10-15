@@ -20,6 +20,7 @@ func _update_size() -> void:
 	mat.set_shader_parameter("pixel_size", s.x / 256.0)
 
 func play() -> void:
+	$AudioStreamPlayer2D.play()
 	var mat: ShaderMaterial = rect.material
 	rect.visible = true
 

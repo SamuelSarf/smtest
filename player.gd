@@ -14,12 +14,20 @@ var gravity = consgravity
 var speed = spezuli
 var jumpst = jumpzuli
 var onsnow = false
-
+var attacking = true
 func _ready() -> void:
 	floor_max_angle = deg_to_rad(60.0)
 	floor_snap_length = 8.0
 	velocity = SceneTransition.velocity
 	position = SceneTransition.position
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("attack"):
+		velocity.x *= 0.3
+		$hurtbox/AnimatedSprite2D.visible = true
+		$hurtbox/AnimatedSprite2D.play()
+		await $hurtbox/AnimatedSprite2D.animation_finished
+		$hurtbox/AnimatedSprite2D.visible = false
 
 func _physics_process(delta: float) -> void:
 	if onsnow:
@@ -37,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		if momentumstate == 5:
 			momentumstate = 6
 			velocity.x = 0
-			$hitbox.shape.set_size(Vector2(20, 20))
+			$physicsbox.shape.set_size(Vector2(20, 20))
 			momentumstate = 0
 		else:
 			movexground();
@@ -54,7 +62,7 @@ func updateanim():
 func jump():
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or (onsnow and velocity.y <= 0)):
 		momentumstate = 5
-		$hitbox.shape.set_size(Vector2(20, 15))
+		$physicsbox.shape.set_size(Vector2(20, 15))
 		jumping = true
 		if abs(velocity.x) <= 0.125*speed:
 			velocity.x = 0

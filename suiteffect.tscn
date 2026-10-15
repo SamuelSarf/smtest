@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwfj3jpruxhvb" path="res://suiteffect.gd" id="1_6e6pi"]
 [ext_resource type="Shader" uid="uid://dd8xfvyqot0yp" path="res://suit.gdshader" id="1_lfvwi"]
+[ext_resource type="AudioStream" uid="uid://bwxp3q1w3pnc3" path="res://power bomb.mp3" id="3_f417d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3x75"]
 shader = ExtResource("1_lfvwi")
@@ -37,3 +38,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control" unique_id=1705600435]
+stream = ExtResource("3_f417d")

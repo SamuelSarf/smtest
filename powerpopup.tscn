@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b3jyhaqof6xqs" path="res://powerpopup.gd" id="1_e8eov"]
 [ext_resource type="Texture2D" uid="uid://ci3nmmugfna4f" path="res://ice text.png" id="2_5l701"]
 [ext_resource type="Shader" uid="uid://ce0hwqnyddios" path="res://powerpopup.gdshader" id="3_5l701"]
+[ext_resource type="AudioStream" uid="uid://dgt0l1luxcpj" path="res://super-metroid-music-item-acquisition-fanfare.mp3" id="4_r4qxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvpec"]
 shader = ExtResource("3_5l701")
@@ -58,3 +59,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("ViewportTexture_n3x75")
 expand_mode = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2029267678]
+stream = ExtResource("4_r4qxf")

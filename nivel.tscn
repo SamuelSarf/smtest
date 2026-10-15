@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cg5ndxqtlongs" path="res://attributetiles.png" id="6_6apml"]
 [ext_resource type="Texture2D" uid="uid://bv14njjap0512" path="res://snow.png" id="8_d04yg"]
 [ext_resource type="Script" uid="uid://b1d67n50sphwn" path="res://autoplay.gd" id="9_u1w1e"]
+[ext_resource type="AudioStream" uid="uid://83wwswxyavqt" path="res://blip.mp3" id="10_sdrig"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d04yg"]
 texture = ExtResource("6_6apml")
@@ -867,11 +868,16 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAsAAAAAAAA
 tile_set = SubResource("TileSet_jvpec")
 
 [node name="snow" type="Parallax2D" parent="." unique_id=528061374]
-repeat_size = Vector2(256, 256)
+scroll_offset = Vector2(2577, -1061)
+repeat_size = Vector2(256, 128)
 autoscroll = Vector2(-40, 120)
+limit_begin = Vector2(0, -10000000)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="snow" unique_id=1910934288]
 texture_repeat = 2
 position = Vector2(128, 128)
 sprite_frames = SubResource("SpriteFrames_ywdb4")
 script = ExtResource("9_u1w1e")
+
+[node name="snowblips" type="AudioStreamPlayer2D" parent="." unique_id=1185578739]
+stream = ExtResource("10_sdrig")
