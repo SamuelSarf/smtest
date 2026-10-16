@@ -14,7 +14,14 @@ func _physics_process(delta):
 	if tile_data.get_custom_data("transition"):
 		SceneTransition.velocity = $CharacterBody2D.velocity
 		SceneTransition.position = $CharacterBody2D.position + 16*(tile_data.get_custom_data("targetanch")-tile_data.get_custom_data("anchor"))
-		Transition.to("res://"+tile_data.get_custom_data("transition")+".tscn", "wipe_up")
+		SceneTransition.camera = tile_data.get_custom_data("tcam")
+		var transdir = tile_data.get_custom_data("transdir")
+		if transdir == 0:
+			Transition.to("res://"+tile_data.get_custom_data("transition")+".tscn", ("wipe_up"))
+		elif transdir == 1:
+			Transition.to("res://"+tile_data.get_custom_data("transition")+".tscn", ("wipe_left"))
+		elif transdir == 2:
+			Transition.to("res://"+tile_data.get_custom_data("transition")+".tscn", ("wipe_right"))
 		return
 	if tile_data.get_custom_data("snow") and Global.glace == false:
 		$CharacterBody2D.onsnow = true
@@ -28,10 +35,10 @@ func _process(_delta: float) -> void:
 			if $snowblips.playing == false:
 				$snowblips.play()
 			if $CharacterBody2D.onsnow == false:
-				$snowblips.volume_db = -10
+				$snowblips.volume_db = -20
 				icecounter = 0
 			else:
-				$snowblips.volume_db = -5
+				$snowblips.volume_db = -10
 				icecounter = 4
 			Global.energy -= 1
 		else:

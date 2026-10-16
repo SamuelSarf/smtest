@@ -27,7 +27,7 @@ func _process(delta):
 		if _allows(new_pos+Vector2(0,-130-lookahead), "allow_up"):
 			new_pos.y = move_toward(new_pos.y, desired.y, speed)
 	elif desired.y > new_pos.y:
-		if _allows(new_pos+Vector2(0,120+lookahead), "allow_down"):
+		if _allows(new_pos+Vector2(0,96+lookahead), "allow_down"):
 			new_pos.y = move_toward(new_pos.y, desired.y, speed)
 	
 	global_position = new_pos

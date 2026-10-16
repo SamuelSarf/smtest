@@ -5,7 +5,7 @@ const jumpzuli: float = 48;
 var isfacingright: bool = false;
 @onready var animated_spirte = $AnimatedSprite2D;
 var facing = 0
-var momentumstate = 0 #0: standing; 1: moving: 2: slowing down; 3: finished slowing down; 4: turning around; 5: jumping; 6:landing
+var momentumstate = 0 #0: standing; 1: moving: 2: slowing down; 3: finished slowing down; 4: turning around; 5: air; 6:landing
 var turningphase = 0
 var turntarget = 0
 var jumping = false
@@ -15,19 +15,34 @@ var speed = spezuli
 var jumpst = jumpzuli
 var onsnow = false
 var attacking = true
+var damagetick = 0
+var damageorigin
+
 func _ready() -> void:
+	damagetick = 0
 	floor_max_angle = deg_to_rad(60.0)
 	floor_snap_length = 8.0
 	velocity = SceneTransition.velocity
-	position = SceneTransition.position
+	if SceneTransition.position:
+		position = SceneTransition.position
+		$"../Camera2D".position = SceneTransition.camera
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
-		velocity.x *= 0.3
+		$hurtbox.monitoring = true
 		$hurtbox/AnimatedSprite2D.visible = true
 		$hurtbox/AnimatedSprite2D.play()
 		await $hurtbox/AnimatedSprite2D.animation_finished
 		$hurtbox/AnimatedSprite2D.visible = false
+		$hurtbox.monitoring = false
+	if damagetick != 0:
+		damagetick += 1
+		$AnimatedSprite2D.self_modulate.a = 0.5 + 0.5*(floor(damagetick/4) % 2)
+		if velocity.x*damageorigin > spezuli*4:
+			velocity.x -= damageorigin*2
+	if damagetick > 60:
+		self_modulate.a = 1
+		damagetick = 0
 
 func _physics_process(delta: float) -> void:
 	if onsnow:
@@ -50,6 +65,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			movexground();
 	else:
+		momentumstate = 5
 		movexair()
 	jump() #and other airborne physics
 	flip();
@@ -156,16 +172,26 @@ func movexground():
 			momentumstate = 0
 		return
 func movexair():
-	var input_axis = Input.get_axis("move_left", "move_right");
-	if input_axis == -1:
-		facing = input_axis
-		if velocity.x > -1.375*speed:
-			velocity.x += -0.5*speed
-			if velocity.x < -1.375*speed:
-				velocity.x = -1.375*speed
-	elif input_axis == 1:
-		facing = input_axis
-		if velocity.x < 1.375*speed:
-			velocity.x += 0.5*speed
-			if velocity.x > 1.375*speed:
-				velocity.x = 1.375*speed
+	if damagetick == 0 or damagetick > 20:
+		var input_axis = Input.get_axis("move_left", "move_right");
+		if input_axis == -1:
+			facing = input_axis
+			if velocity.x > -1.375*speed:
+				velocity.x += -0.5*speed
+				if velocity.x < -1.375*speed:
+					velocity.x = -1.375*speed
+		elif input_axis == 1:
+			facing = input_axis
+			if velocity.x < 1.375*speed:
+				velocity.x += 0.5*speed
+				if velocity.x > 1.375*speed:
+					velocity.x = 1.375*speed
+
+func deal_damage(origin:float) -> void:
+	if damagetick == 0:
+		$Damage.play()
+		damagetick = 1
+		damageorigin = sign(position.x-origin)
+		velocity.x = spezuli*6*damageorigin
+		if is_on_floor():
+			velocity.y += -jumpzuli*3

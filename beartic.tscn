@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cr7sbntdmh5da"]
+
+[ext_resource type="Texture2D" uid="uid://dt5j2g20fh0ap" path="res://beartic.png" id="1_7g7sn"]
+[ext_resource type="Script" uid="uid://btmcc0wrsax5w" path="res://beartic.gd" id="1_jf5rc"]
+[ext_resource type="Texture2D" uid="uid://bn2bp4mlkrobp" path="res://ha.png" id="3_cqf0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvpec"]
+size = Vector2(37, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3x75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7g7sn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqf0v"]
+size = Vector2(90, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jvpec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cqf0v")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="beartic" type="CharacterBody2D" unique_id=1115104056]
+collision_layer = 8
+script = ExtResource("1_jf5rc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052204412]
+position = Vector2(-2.5, -0.5)
+shape = SubResource("RectangleShape2D_jvpec")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1619713921]
+sprite_frames = SubResource("SpriteFrames_n3x75")
+
+[node name="FallDetector" type="RayCast2D" parent="." unique_id=1312003799]
+position = Vector2(-20, 0)
+target_position = Vector2(0, 80)
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=1080399800]
+position = Vector2(0, -16)
+target_position = Vector2(-64, 0)
+
+[node name="GroundDetector" type="RayCast2D" parent="." unique_id=75186667]
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=553721408]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1507091863]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_cqf0v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttackArea" unique_id=2025864000]
+position = Vector2(-38, -1.5)
+scale = Vector2(0.050468754, 0.05765921)
+sprite_frames = SubResource("SpriteFrames_jvpec")

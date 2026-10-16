@@ -33,6 +33,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/saltmire_transitions/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 move_left={
