@@ -1,27 +1,239 @@
 [gd_scene format=3 uid="uid://pq4p6ap081eu"]
 
-[ext_resource type="Texture2D" uid="uid://cgw6vdeple41r" path="res://eetemp.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://hcpwun0myipo" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://chjb6ugengprl" path="res://lazeevee/falling.png" id="2_bwjto"]
+[ext_resource type="Texture2D" uid="uid://c1bmehc1kb8pk" path="res://lazeevee/slowing.png" id="2_ivps1"]
+[ext_resource type="Texture2D" uid="uid://c5fe3h8o6nu6b" path="res://lazeevee/walking1.png" id="2_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://63wmtoax3sg0" path="res://lazeevee/damage.png" id="2_op7ga"]
+[ext_resource type="Texture2D" uid="uid://c17ch6ypw3ds0" path="res://lazeevee/fallingt1.png" id="2_u1c27"]
+[ext_resource type="Texture2D" uid="uid://duq7hpyj324k8" path="res://lazeevee/jumping.png" id="2_urp6f"]
 [ext_resource type="Script" uid="uid://bejeqn8b87p2c" path="res://hurtbox.gd" id="3_hqtel"]
 [ext_resource type="Texture2D" uid="uid://bca2rmjpfal8j" path="res://scratch small.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://c1cjlo0gobwbl" path="res://lazeevee/lazstand.png" id="3_jm5j8"]
+[ext_resource type="Texture2D" uid="uid://clrsk6hiw7rr4" path="res://lazeevee/walking2.png" id="3_nvl01"]
+[ext_resource type="Texture2D" uid="uid://bqsfle6y6dh02" path="res://lazeevee/fallingt2.png" id="3_op7ga"]
+[ext_resource type="Texture2D" uid="uid://blbue4sgsroou" path="res://lazeevee/lazevolve.png" id="4_7hik5"]
+[ext_resource type="Texture2D" uid="uid://bpcffgsifotov" path="res://lazeevee/walking3.png" id="4_ivps1"]
+[ext_resource type="Texture2D" uid="uid://d3g6d4kg4ryiy" path="res://lazeevee/glaceevolve.png" id="5_qtqh7"]
 [ext_resource type="AudioStream" uid="uid://b1fg8em0cliiu" path="res://samus_damage.wav" id="5_sweqy"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3x75"]
-size = Vector2(12, 11.5)
+[ext_resource type="Texture2D" uid="uid://be46r8jq8wrjh" path="res://lazeevee/walking4.png" id="5_urp6f"]
+[ext_resource type="Texture2D" uid="uid://chume25ut15te" path="res://lazeevee/glacestand.png" id="6_2wuci"]
+[ext_resource type="Texture2D" uid="uid://dnl7gsdbsetye" path="res://lazeevee/walking5.png" id="6_bwjto"]
+[ext_resource type="Texture2D" uid="uid://dhijiwim3duno" path="res://lazeevee/scratch1.png" id="7_5tmop"]
+[ext_resource type="Texture2D" uid="uid://dimu37oebv45o" path="res://lazeevee/walking6.png" id="7_606se"]
+[ext_resource type="Texture2D" uid="uid://w8mjlhirb4s6" path="res://lazeevee/scratch2.png" id="8_7ahtn"]
+[ext_resource type="Script" uid="uid://dj1dk3fv5mlcp" path="res://playeranimations.gd" id="8_nvl01"]
+[ext_resource type="Texture2D" uid="uid://dgqjbxoumcp2l" path="res://lazeevee/scratch3.png" id="9_7lmhl"]
+[ext_resource type="Texture2D" uid="uid://b13ti3csrl11i" path="res://lazeevee/scratch4.png" id="10_dx0e4"]
+[ext_resource type="Texture2D" uid="uid://c56gsu2n6hy37" path="res://lazglace/walking1.png" id="10_efrwb"]
+[ext_resource type="Texture2D" uid="uid://b51vqtob1ojy3" path="res://lazglace/fallingt1.png" id="10_ek41f"]
+[ext_resource type="Texture2D" uid="uid://jncqwemcjbpx" path="res://lazglace/walking2.png" id="11_hiqhm"]
+[ext_resource type="Texture2D" uid="uid://d02x7m18bd8b1" path="res://lazglace/fallingt2.png" id="11_khis8"]
+[ext_resource type="Texture2D" uid="uid://8usjdwh37xx" path="res://lazglace/falling.png" id="12_b88wv"]
+[ext_resource type="Texture2D" uid="uid://dyfr0k241t2p4" path="res://lazglace/walking3.png" id="12_tkwlq"]
+[ext_resource type="Texture2D" uid="uid://bfyxhukbrb1lw" path="res://lazglace/walking4.png" id="13_hl5qd"]
+[ext_resource type="Texture2D" uid="uid://y0cf5upfrsi8" path="res://lazglace/jumping.png" id="13_pgbbb"]
+[ext_resource type="Texture2D" uid="uid://b1gh54qa2np2c" path="res://lazglace/scratch1.png" id="14_331ug"]
+[ext_resource type="Texture2D" uid="uid://bywo7l53fhba0" path="res://lazglace/walking5.png" id="14_ek41f"]
+[ext_resource type="Texture2D" uid="uid://yd8xd8n2ncna" path="res://lazglace/scratch5.png" id="15_ibah8"]
+[ext_resource type="Texture2D" uid="uid://sydgwhkpijgt" path="res://lazglace/walking6.png" id="15_khis8"]
+[ext_resource type="Texture2D" uid="uid://c2nedktr4yfyd" path="res://lazglace/scratch2.png" id="15_ny14h"]
+[ext_resource type="Texture2D" uid="uid://c3u3rcgicqba5" path="res://lazglace/walking7.png" id="16_b88wv"]
+[ext_resource type="Texture2D" uid="uid://cnnl1ovhnqe6g" path="res://lazglace/scratch3.png" id="16_ibah8"]
+[ext_resource type="Texture2D" uid="uid://d1ie4vludonrj" path="res://lazglace/scratch4.png" id="17_3iwfv"]
+[ext_resource type="Texture2D" uid="uid://d1ffngid2jmc4" path="res://lazglace/slow.png" id="20_ibah8"]
+[ext_resource type="Texture2D" uid="uid://ddyvwrb7m33cw" path="res://bigscratch.png" id="42_3iwfv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ywdb4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_4flbx")
+"texture": ExtResource("2_op7ga")
 }],
+"loop": 1,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [],
 "loop": 1,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jm5j8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7hik5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qtqh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2wuci")
+}],
+"loop": 1,
+"name": &"evolve",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bwjto")
+}],
+"loop": 0,
+"name": &"falling",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ek41f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_khis8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_b88wv")
+}],
+"loop": 0,
+"name": &"glacefalling",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_pgbbb")
+}],
+"loop": 1,
+"name": &"glacejumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_331ug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ibah8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ny14h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ibah8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3iwfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_efrwb")
+}],
+"loop": 0,
+"name": &"glacescratch",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_ibah8")
+}],
+"loop": 1,
+"name": &"glaceslowing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_efrwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hiqhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tkwlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hl5qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ek41f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_khis8")
+}, {
+"duration": 2.0,
+"texture": ExtResource("16_b88wv")
+}],
+"loop": 1,
+"name": &"glacewalking",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_urp6f")
+}],
+"loop": 1,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_5tmop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7ahtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7lmhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dx0e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n7ghd")
+}],
+"loop": 0,
+"name": &"scratch",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ivps1")
+}],
+"loop": 1,
+"name": &"slowing",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n7ghd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nvl01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bwjto")
+}, {
+"duration": 2.0,
+"texture": ExtResource("7_606se")
+}],
+"loop": 1,
+"name": &"walking",
+"speed": 25.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3x75"]
+size = Vector2(20, 23)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywdb4"]
-size = Vector2(10, 12)
+size = Vector2(25, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("3_i3pqv")
@@ -35,21 +247,47 @@ region = Rect2(8, 0, 8, 8)
 atlas = ExtResource("3_i3pqv")
 region = Rect2(16, 0, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwsg1"]
+atlas = ExtResource("42_3iwfv")
+region = Rect2(0, 0, 17, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xqrm"]
+atlas = ExtResource("42_3iwfv")
+region = Rect2(17, 0, 17, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfour"]
+atlas = ExtResource("42_3iwfv")
+region = Rect2(34, 0, 17, 35)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_rj60s"]
 animations = [{
 "frames": [{
-"duration": 0.3,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hqtel")
 }, {
-"duration": 0.3,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_sweqy")
 }, {
-"duration": 0.3,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2hs0m")
 }],
 "loop": 0,
-"name": &"default",
-"speed": 5.0
+"name": &"eevee",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwsg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xqrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfour")
+}],
+"loop": 0,
+"name": &"glaceon",
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj60s"]
@@ -61,37 +299,39 @@ collision_mask = 3
 script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
 
-[node name="physicsbox" type="CollisionShape2D" parent="." unique_id=1430199314]
-position = Vector2(0, 1.75)
-shape = SubResource("RectangleShape2D_n3x75")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1499368399]
 sprite_frames = SubResource("SpriteFrames_ywdb4")
+animation = &"glaceslowing"
+script = ExtResource("8_nvl01")
+
+[node name="physicsbox" type="CollisionShape2D" parent="." unique_id=1430199314]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_n3x75")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=2093488339]
+position = Vector2(-8, 4)
 collision_layer = 0
 collision_mask = 3
 monitoring = false
 script = ExtResource("3_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1950423991]
-position = Vector2(-9, 2)
+position = Vector2(-16.5, -3)
 shape = SubResource("RectangleShape2D_ywdb4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hurtbox" unique_id=731145201]
 z_index = 1
 z_as_relative = false
-position = Vector2(-9, 3)
+position = Vector2(-17, -4)
 sprite_frames = SubResource("SpriteFrames_rj60s")
-frame = 2
-frame_progress = 0.672217
+animation = &"eevee"
 
 [node name="hitbox" type="Area2D" parent="." unique_id=2069928887]
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=622545184]
-position = Vector2(0, 1.5)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_rj60s")
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="." unique_id=1689292566]

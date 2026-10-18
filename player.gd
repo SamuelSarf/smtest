@@ -17,8 +17,11 @@ var onsnow = false
 var attacking = true
 var damagetick = 0
 var damageorigin
-
+var slowing: bool = false
+var canscratch = true
 func _ready() -> void:
+	if Global.glace == true:
+		set_collision_mask_value(7,true)
 	damagetick = 0
 	floor_max_angle = deg_to_rad(60.0)
 	floor_snap_length = 8.0
@@ -26,15 +29,12 @@ func _ready() -> void:
 	if SceneTransition.position:
 		position = SceneTransition.position
 		$"../Camera2D".position = SceneTransition.camera
+	if SceneTransition.direction:
+		facing = SceneTransition.direction
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
-		$hurtbox.monitoring = true
-		$hurtbox/AnimatedSprite2D.visible = true
-		$hurtbox/AnimatedSprite2D.play()
-		await $hurtbox/AnimatedSprite2D.animation_finished
-		$hurtbox/AnimatedSprite2D.visible = false
-		$hurtbox.monitoring = false
+	if canscratch:
+		scratch()
 	if damagetick != 0:
 		damagetick += 1
 		$AnimatedSprite2D.self_modulate.a = 0.5 + 0.5*(floor(damagetick/4) % 2)
@@ -43,7 +43,27 @@ func _process(delta: float) -> void:
 	if damagetick > 60:
 		self_modulate.a = 1
 		damagetick = 0
-
+func scratch():
+	if Input.is_action_just_pressed("attack") and damagetick == 0:
+		canscratch = false
+		if Global.glace:
+			$hurtbox/CollisionShape2D.shape.set_size(Vector2(25, 32))
+			$hurtbox/CollisionShape2D.position = Vector2(-16.5,-3)
+			$hurtbox/AnimatedSprite2D.position = Vector2(-17,4)
+			$hurtbox/AnimatedSprite2D.animation = "glaceon"
+		else:
+			$hurtbox/CollisionShape2D.shape.set_size(Vector2(15, 12))
+			$hurtbox/CollisionShape2D.position = Vector2(-6.5,2)
+			$hurtbox/AnimatedSprite2D.position = Vector2(-9,3)
+			$hurtbox/AnimatedSprite2D.animation = "eevee"
+		$hurtbox.monitoring = true
+		$hurtbox/AnimatedSprite2D.visible = true
+		$hurtbox/AnimatedSprite2D.play()
+		await $hurtbox/AnimatedSprite2D.animation_finished
+		$hurtbox/AnimatedSprite2D.visible = false
+		$hurtbox.monitoring = false
+		await get_tree().create_timer(0.2).timeout
+		canscratch = true
 func _physics_process(delta: float) -> void:
 	if onsnow:
 		velocity = Vector2.ZERO
@@ -58,18 +78,38 @@ func _physics_process(delta: float) -> void:
 		floor_constant_speed = true
 	if is_on_floor():
 		if momentumstate == 5:
+			$"../landing".play()
 			momentumstate = 6
 			velocity.x = 0
-			$physicsbox.shape.set_size(Vector2(20, 20))
-			momentumstate = 0
+			if Global.glace:
+				$physicsbox.shape.set_size(Vector2(20, 23))
+				$physicsbox.position.y = 5
+				momentumstate = 0
+			else:
+				$physicsbox.shape.set_size(Vector2(20, 15))
+				$physicsbox.position.y = 5
+				momentumstate = 0
 		else:
 			movexground();
 	else:
+		$physicsbox.shape.set_size(Vector2(20, 14))
+		$physicsbox.position.y = 7
+		slowing = false
 		momentumstate = 5
 		movexair()
 	jump() #and other airborne physics
 	flip();
-	move_and_slide()
+	if damagetick == 0:
+		move_and_slide()
+	else:
+		var collision := move_and_slide()
+		if collision:
+			for i in get_slide_collision_count():
+				var normal := get_slide_collision(i).get_normal()
+				# Only bounce off vertical walls (normal points along X)
+				if abs(normal.x) > 0.7:
+					velocity.x = -velocity.x*0.6
+					break
 	
 func updateanim():
 	if velocity.x:
@@ -78,7 +118,6 @@ func updateanim():
 func jump():
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or (onsnow and velocity.y <= 0)):
 		momentumstate = 5
-		$physicsbox.shape.set_size(Vector2(20, 15))
 		jumping = true
 		if abs(velocity.x) <= 0.125*speed:
 			velocity.x = 0
@@ -125,6 +164,7 @@ func movexground():
 				momentumstate = 4
 			return
 	if momentumstate == 1:
+		slowing = false
 		if input_axis == facing:
 			if running:
 				if abs(velocity.x) <= 4.75*speed:
@@ -142,6 +182,7 @@ func movexground():
 		elif input_axis == 0:
 			if abs(velocity.x) > 0.5*speed:
 				velocity.x -= 0.5*speed*facing
+				slowing = true
 			else:
 				velocity.x = 0
 				momentumstate = 2
@@ -160,6 +201,7 @@ func movexground():
 	if momentumstate == 3:
 		velocity.x = 0
 		momentumstate = 0
+		slowing = false
 		return
 	if momentumstate == 4:
 		if (facing == -input_axis or turningphase <= 1) and abs(velocity.x) > 0.5*speed:

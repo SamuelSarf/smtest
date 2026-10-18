@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dcvaxk4ny62ke" path="res://tanks.png" id="4_ibotj"]
 [ext_resource type="Texture2D" uid="uid://bg5udg4n56rs7" path="res://letters.png" id="6_n5ude"]
 [ext_resource type="Script" uid="uid://fmhwfs76sqe5" path="res://pressed.gd" id="6_y4yjw"]
+[ext_resource type="Texture2D" uid="uid://d07c61bs1hde1" path="res://snowflake.png" id="8_waa4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5ude"]
 atlas = ExtResource("3_nltto")
@@ -452,6 +453,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh67b"]
+atlas = ExtResource("8_waa4j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk3no"]
+atlas = ExtResource("8_waa4j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_437ht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh67b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk3no")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1159567304]
 script = ExtResource("1_ibotj")
 
@@ -550,3 +573,8 @@ visible = false
 position = Vector2(44, 4)
 sprite_frames = SubResource("SpriteFrames_f7x0w")
 frame = 23
+
+[node name="snowflake" type="AnimatedSprite2D" parent="." unique_id=1733703606]
+visible = false
+position = Vector2(82, 24)
+sprite_frames = SubResource("SpriteFrames_437ht")

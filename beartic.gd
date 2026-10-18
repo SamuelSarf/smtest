@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var jump_velocity: float = -350.0
 @export var gravity: float = 980.0
 
-@export var chase_distance: float = 300.0     # start running
-@export var attack_range: float = 40.0        # stop and attack
+@export var chase_distance: float = 300.0
+@export var attack_range: float = 40.0
 @export var attack_damage: int = 1
 @export var attack_cooldown: float = 1.0
 
@@ -21,6 +21,7 @@ var can_attack: bool = true
 var is_attacking: bool = false
 
 func _ready() -> void:
+	$AnimatedSprite2D.position.x = 0
 	floor_max_angle = deg_to_rad(60.0)
 	floor_snap_length = 8.0
 	player = $"../CharacterBody2D"
@@ -28,35 +29,42 @@ func _ready() -> void:
 	$AttackArea/CollisionShape2D.shape.set_size(Vector2(45, 45))
 	$AttackArea/CollisionShape2D.position = Vector2(-1.5,-9.5)
 	$AttackArea.body_entered.connect(_on_body_entered)
-	# Prevent the enemy from trying to reach a spot exactly on top of the player
+
+func _process(delta: float) -> void:
+	if is_attacking == true:
+		$AnimatedSprite2D.position.x = 22
+		$AnimatedSprite2D.animation = "attack"
+		$AnimatedSprite2D.play()
+		if $AnimatedSprite2D.frame == 3:
+			$AnimatedSprite2D.position.x = 0
+	elif is_on_floor():
+		$AnimatedSprite2D.animation = "walk"
+		if velocity.x != 0:
+			$AnimatedSprite2D.play()
+		else:
+			$AnimatedSprite2D.stop()
+			$AnimatedSprite2D.frame = 0
+	else:
+		$AnimatedSprite2D.animation = "air"
 
 func _physics_process(delta: float) -> void:
-	# Gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
 	if player == null:
 		velocity.x = 0
 		move_and_slide()
 		return
-
 	var distance_to_player := global_position.distance_to(player.global_position)
-
-	# --- Attack ---
 	if distance_to_player <= attack_range and can_attack:
 		_start_attack()
 		velocity.x = 0
 		move_and_slide()
 		return
-
 	if is_attacking:
 		velocity.x = 0
 		move_and_slide()
 		return
-
-	# --- Chase ---
 	direction = sign(player.global_position.x - global_position.x)
-	# Face direction (flip sprite)
 	var flip = direction > 0
 	if direction != 0:
 		$AnimatedSprite2D.flip_h = flip
@@ -66,33 +74,19 @@ func _physics_process(delta: float) -> void:
 			$AttackArea/AnimatedSprite2D.position.x = 38
 		else:
 			$AttackArea/AnimatedSprite2D.position.x = -38
-		
-
-	# --- Fall detection ---
-	# Position the fall ray at the leading edge of the enemy
 	fall_ray.position.x = abs(fall_ray.position.x) * direction
 	fall_ray.force_raycast_update()
-
 	var fall_ahead := not fall_ray.is_colliding() and is_on_floor()
-
-	# --- Wall detection ---
 	wall_ray.target_position.x = abs(wall_ray.target_position.x) * direction
 	wall_ray.force_raycast_update()
 	var wall_ahead := wall_ray.is_colliding()
-
-	# --- Choose speed ---
 	var speed := walk_speed
 	if distance_to_player < chase_distance:
 		speed = run_speed
-
-	# --- Decide movement ---
 	if fall_ahead:
-		# Stop at the edge. Optionally jump if the gap is small.
 		velocity.x = 0
 	else:
 		velocity.x = direction * speed
-
-		# Jump if a wall blocks us (or the player is above us)
 		if wall_ahead and is_on_floor():
 			velocity.y = jump_velocity
 			velocity.x = direction*run_speed
@@ -103,8 +97,6 @@ func _start_attack() -> void:
 	can_attack = false
 	is_attacking = true
 	$AttackArea/AnimatedSprite2D.visible = true
-	# Play your attack animation here
-	# $AnimatedSprite2D.play("attack")
 	$AttackArea/CollisionShape2D.shape.set_size(Vector2(90, 64))
 	if direction == -1:
 		$AttackArea/CollisionShape2D.position = Vector2(-13,0)
@@ -113,7 +105,7 @@ func _start_attack() -> void:
 		$AttackArea/CollisionShape2D.position = Vector2(13,0)
 		$AttackArea/AnimatedSprite2D.position.x = 38
 	#_deal_damage()
-	await get_tree().create_timer(0.3).timeout  # wind-up / hit window
+	await get_tree().create_timer(0.3).timeout
 	#_deal_damage()
 	is_attacking = false
 	$AttackArea/AnimatedSprite2D.visible = false

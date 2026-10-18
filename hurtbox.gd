@@ -13,8 +13,12 @@ func _process(delta: float) -> void:
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body is TileMapLayer:
-		# Ensure physics_quadrant_size is set to 1 in the Inspector
 		var cell_coords = body.get_coords_for_body_rid(body_rid)
 		var tile_data = body.get_cell_tile_data(cell_coords)
 		if tile_data and tile_data.get_custom_data("destructible"):
+			var tile_global_pos = body.to_global(body.map_to_local(cell_coords))
 			body.erase_cell(cell_coords)
+			var effect = preload("res://breakingblock.tscn").instantiate()
+			effect.global_position = tile_global_pos
+			get_tree().current_scene.add_child(effect)
+			

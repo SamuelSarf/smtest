@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://cr7sbntdmh5da"]
 
-[ext_resource type="Texture2D" uid="uid://dt5j2g20fh0ap" path="res://beartic.png" id="1_7g7sn"]
 [ext_resource type="Script" uid="uid://btmcc0wrsax5w" path="res://beartic.gd" id="1_jf5rc"]
-[ext_resource type="Texture2D" uid="uid://bn2bp4mlkrobp" path="res://ha.png" id="3_cqf0v"]
+[ext_resource type="Texture2D" uid="uid://dk1oirolj3xtg" path="res://beartic/walking 1.png" id="2_o61qe"]
+[ext_resource type="Texture2D" uid="uid://di872rh25kp6t" path="res://beartic/jumping.png" id="2_xt4po"]
+[ext_resource type="Texture2D" uid="uid://br0ds47st61up" path="res://beartic/walking 2.png" id="3_btexf"]
+[ext_resource type="Texture2D" uid="uid://rxhkpgn658ta" path="res://beartic/attack 1.png" id="3_qpv0e"]
+[ext_resource type="Texture2D" uid="uid://cmaydrt3hnx2c" path="res://beartic/attack 2.png" id="4_knvy2"]
+[ext_resource type="Texture2D" uid="uid://c665hfip2j54s" path="res://beartic/walking 3.png" id="4_u7n73"]
+[ext_resource type="Texture2D" uid="uid://dk0pnp13rco7f" path="res://beartic/attack 3.png" id="5_f2ero"]
+[ext_resource type="Texture2D" uid="uid://c3xqf6s82dwr" path="res://beartic/walking 4.png" id="5_ja3gb"]
+[ext_resource type="Texture2D" uid="uid://c0xxl4enine0g" path="res://beartic/walking 5.png" id="7_1bmmy"]
+[ext_resource type="Texture2D" uid="uid://bx6g7anannv7c" path="res://beartic/walking 6.png" id="8_v0aig"]
+[ext_resource type="Texture2D" uid="uid://nj2nj5x18i0f" path="res://beartic/walking 7.png" id="9_qpv0e"]
+[ext_resource type="Texture2D" uid="uid://c6tic8iygx3s5" path="res://beartic/walking 8.png" id="10_knvy2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvpec"]
 size = Vector2(37, 63)
@@ -11,26 +21,63 @@ size = Vector2(37, 63)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7g7sn")
+"texture": ExtResource("2_xt4po")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"air",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qpv0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_knvy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f2ero")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o61qe")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o61qe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_btexf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u7n73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ja3gb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1bmmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_v0aig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qpv0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_knvy2")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqf0v"]
 size = Vector2(90, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jvpec"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_cqf0v")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="beartic" type="CharacterBody2D" unique_id=1115104056]
 collision_layer = 8
@@ -42,6 +89,7 @@ shape = SubResource("RectangleShape2D_jvpec")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1619713921]
 sprite_frames = SubResource("SpriteFrames_n3x75")
+animation = &"attack"
 
 [node name="FallDetector" type="RayCast2D" parent="." unique_id=1312003799]
 position = Vector2(-20, 0)
@@ -62,6 +110,7 @@ position = Vector2(-13, 0)
 shape = SubResource("RectangleShape2D_cqf0v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttackArea" unique_id=2025864000]
+visible = false
 position = Vector2(-38, -1.5)
 scale = Vector2(0.050468754, 0.05765921)
 sprite_frames = SubResource("SpriteFrames_jvpec")

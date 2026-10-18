@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://ddonsqqwrk2qi"]
+
+[ext_resource type="Texture2D" uid="uid://bt4sx5c5vki0q" path="res://breaking.png" id="1_k6rct"]
+[ext_resource type="Script" uid="uid://cj7pd5ok7mfo0" path="res://breakingblock.gd" id="2_38skn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38skn"]
+atlas = ExtResource("1_k6rct")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc4um"]
+atlas = ExtResource("1_k6rct")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebul4"]
+atlas = ExtResource("1_k6rct")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37vvg"]
+atlas = ExtResource("1_k6rct")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywdb4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38skn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc4um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebul4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37vvg")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ywdb4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj60s"]
+size = Vector2(16, 16)
+
+[node name="breakingblock" type="AnimatedSprite2D" unique_id=2044771148]
+sprite_frames = SubResource("SpriteFrames_ywdb4")
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_38skn")
+
+[node name="Area2D" type="RigidBody2D" parent="." unique_id=794105633]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_ywdb4")
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1246585435]
+shape = SubResource("RectangleShape2D_rj60s")

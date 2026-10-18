@@ -1,14 +1,24 @@
 extends CanvasLayer
-
-var last_energy
+var onsnow = false
+var last_energy = Global.energy
 
 func _ready() -> void:
 	last_energy = Global.energy
+	act_energy()
 
 func _process(_delta: float) -> void:
 	if Global.energy != last_energy:
 		last_energy = Global.energy
 		act_energy()
+	if onsnow:
+		$snowflake.frame = 1
+		$snowflake.visible = true
+		onsnow = false
+	elif $"..".frozen == true and Global.glace == false:
+		$snowflake.frame = 0
+		$snowflake.visible = true
+	else:
+		$snowflake.visible = false
 
 func act_energy():
 	if last_energy > 99:
